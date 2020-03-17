@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MyContext from './context.js';
+import ComponentePrimero from './ComponentePrimero'
 
 function App() {
+
+  const [myState, updateMyState] = useState({
+    name: 'Jaime',
+    lastName: 'Jacobo',
+    alive: true
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={[myState, updateMyState]}>
+      <div className="App">
+        <ComponentePrimero />
+      </div>        
+    </MyContext.Provider>
   );
 }
 
